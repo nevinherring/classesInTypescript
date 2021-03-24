@@ -78,3 +78,42 @@ square.doSomething();
 
 let shape:Shape = new Square(10);
 shape.doSomething();
+
+// Fluent API
+class Calculator {
+    constructor(private _currentValue: number = 0) { }
+
+    add(a: number): this {
+        this._currentValue += a;
+        return this;
+    }
+
+    substract(a: number): this {
+        this._currentValue -= a;
+        retrun this;
+    }
+
+    multiply(a: number): this {
+        this._currentValue *= a;
+        return this;
+    }
+
+    divide(a: number): this {
+        this._currentValue /= a;
+        return this;
+    }
+
+    get value(): number {
+        return this._currentValue;
+    }
+}
+
+let result: number = new Calculator(0)
+    .add(5) // returns this
+    .multiply(2) // return this
+    .add(10) // we can keep chaining methods calls
+    .divide(4)
+    .substract(2)
+    .value; // returns the value
+
+console.log(`Result: ${result}`); // 3
